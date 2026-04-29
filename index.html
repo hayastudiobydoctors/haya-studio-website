@@ -14,31 +14,110 @@ color:#111;
 line-height:1.6;
 }
 
+/* HEADER */
 header{
 position:sticky;
 top:0;
 background:#fff;
 border-bottom:1px solid #eee;
-padding:7px 18px;
+padding:10px 18px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-z-index:10;
+z-index:999;
+}
+
+/* LOGO AREA */
+.brand{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.brand-logo{
+width:64px;
+height:64px;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-shrink:0;
+}
+
+.brand-logo img{
+height:88px;
+width:auto;
+object-fit:cover;
+}
+
+.brand-text{
+line-height:1.02;
+}
+
+.brand-text h1{
+margin:0;
+font-size:21px;
+font-weight:700;
+}
+
+.brand-text p{
+margin:4px 0 0 0;
+font-size:14px;
+color:#777;
+}
+
+/* DESKTOP NAV */
+nav{
+display:flex;
+gap:14px;
+align-items:center;
 }
 
 nav a{
-margin:0 12px;
-color:#111;
 text-decoration:none;
+color:#111;
 font-size:14px;
 letter-spacing:.08em;
 text-transform:uppercase;
+padding:6px 0;
+transition:0.3s;
 }
 
+nav a:hover,
+nav a.active{
+color:#c79a2b;
+}
+
+/* HAMBURGER */
+.menu-toggle{
+display:none;
+font-size:28px;
+cursor:pointer;
+background:none;
+border:none;
+color:#111;
+}
+
+/* HERO */
 .hero{
 padding:35px 20px 70px;
 text-align:center;
 background:linear-gradient(to bottom,#fff,#f8f8f8);
+}
+
+.hero-logo{
+width:260px;
+height:260px;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:0 auto -18px auto;
+}
+
+.hero-logo img{
+height:340px;
+width:auto;
 }
 
 .hero h2{
@@ -50,8 +129,10 @@ margin:6px 0 10px;
 max-width:720px;
 margin:auto;
 color:#555;
+font-size:18px;
 }
 
+/* BUTTONS */
 .btn{
 display:inline-block;
 margin:10px;
@@ -60,7 +141,7 @@ border-radius:30px;
 text-decoration:none;
 border:1px solid #111;
 color:#111;
-font-size:14px;
+font-size:16px;
 }
 
 .btn.primary{
@@ -68,10 +149,17 @@ background:#111;
 color:#fff;
 }
 
+/* SECTIONS */
 .section{
 padding:70px 20px;
 max-width:1150px;
 margin:auto;
+}
+
+.title{
+text-align:center;
+font-size:34px;
+margin-bottom:35px;
 }
 
 .cards{
@@ -89,23 +177,19 @@ box-shadow:0 10px 25px rgba(0,0,0,.04);
 text-align:center;
 }
 
-h2.title{
-text-align:center;
-font-size:34px;
-margin-bottom:35px;
-}
-
 .about{
-max-width:780px;
+max-width:850px;
 margin:auto;
 text-align:center;
 color:#444;
+font-size:18px;
 }
 
 .contact{
 background:#fafafa;
 border-radius:20px;
 padding:30px;
+font-size:18px;
 }
 
 .footer{
@@ -116,21 +200,67 @@ border-top:1px solid #eee;
 margin-top:50px;
 }
 
+/* MOBILE */
 @media(max-width:700px){
 
-header{
+.menu-toggle{
+display:block;
+}
+
+nav{
+display:none;
+position:absolute;
+top:88px;
+left:0;
+width:100%;
+background:#fff;
+border-top:1px solid #eee;
+border-bottom:1px solid #eee;
 flex-direction:column;
-gap:10px;
+padding:0;
+}
+
+nav.show{
+display:flex;
+}
+
+nav a{
+width:100%;
+text-align:center;
+padding:15px 0;
+border-bottom:1px solid #f2f2f2;
+}
+
+nav a:last-child{
+border-bottom:none;
+}
+
+nav a.active{
+background:#111;
+color:#fff;
 }
 
 .hero h2{
-font-size:30px;
+font-size:32px;
+}
+
+.hero p{
+font-size:17px;
+padding:0 12px;
 }
 
 .btn{
 display:block;
-max-width:260px;
-margin:10px auto;
+max-width:280px;
+margin:12px auto;
+}
+
+.brand-text h1{
+font-size:19px;
+}
+
+.brand-text p{
+font-size:13px;
 }
 
 }
@@ -141,21 +271,23 @@ margin:10px auto;
 
 <header>
 
-<div style="display:flex;align-items:center;gap:12px;">
+<div class="brand">
 
-<div style="width:64px;height:64px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-<img src="logo.png" alt="Haya Studio Logo" style="height:88px;width:auto;mix-blend-mode:multiply;object-fit:cover;display:block;transform:translateY(4px);">
+<div class="brand-logo">
+<img src="logo.png" alt="Logo">
 </div>
 
-<div style="display:flex;flex-direction:column;justify-content:center;line-height:1.02;">
-<div style="font-size:21px;font-weight:700;letter-spacing:.04em;">Haya Studio</div>
-<div style="font-size:14px;font-weight:400;color:#777;margin-top:4px;">by Doctors</div>
+<div class="brand-text">
+<h1>Haya Studio</h1>
+<p>by Doctors</p>
 </div>
 
 </div>
 
-<nav>
-<a href="#home">Home</a>
+<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+<nav id="navMenu">
+<a href="#home" class="active">Home</a>
 <a href="#products">Collections</a>
 <a href="#about">About</a>
 <a href="#contact">Contact</a>
@@ -163,10 +295,11 @@ margin:10px auto;
 
 </header>
 
+
 <section class="hero" id="home">
 
-<div style="width:260px;height:260px;overflow:hidden;display:flex;align-items:center;justify-content:center;margin:0 auto -18px auto;">
-<img src="logo.png" alt="logo" style="height:340px;width:auto;mix-blend-mode:multiply;object-fit:cover;">
+<div class="hero-logo">
+<img src="logo.png">
 </div>
 
 <h2>Women Luxury Modest Wear</h2>
@@ -176,12 +309,11 @@ Curated premium abayas, elegant burkhas, graceful Pakistani dresses and timeless
 </p>
 
 <a class="btn primary" href="https://wa.me/918879757173">Order on WhatsApp</a>
-
 <a class="btn" href="https://instagram.com/haya_studio_by_doctors">View Instagram</a>
-
 <a class="btn" href="https://facebook.com/HayaStudioByDoctors">View Facebook</a>
 
 </section>
+
 
 <section class="section" id="products">
 
@@ -192,63 +324,42 @@ Curated premium abayas, elegant burkhas, graceful Pakistani dresses and timeless
 <div class="card">
 <h3>Abayas</h3>
 <p>Elegant daily and premium styles.</p>
-<a class="btn primary" href="https://wa.me/918879757173?text=Assalamualaikum,%20I%20want%20price%20details%20for%20Abayas">DM for Price</a>
+<a class="btn primary" href="https://wa.me/918879757173?text=I want price details for Abayas">DM for Price</a>
 </div>
 
 <div class="card">
 <h3>Burkhas</h3>
 <p>Comfortable and graceful modest wear.</p>
-<a class="btn primary" href="https://wa.me/918879757173?text=Assalamualaikum,%20I%20want%20price%20details%20for%20Burkhas">DM for Price</a>
+<a class="btn primary" href="https://wa.me/918879757173?text=I want price details for Burkhas">DM for Price</a>
 </div>
 
 <div class="card">
 <h3>Pakistani Dresses</h3>
 <p>Festive and stylish designer outfits.</p>
-<a class="btn primary" href="https://wa.me/918879757173?text=Assalamualaikum,%20I%20want%20price%20details%20for%20Pakistani%20Dresses">DM for Price</a>
+<a class="btn primary" href="https://wa.me/918879757173?text=I want price details for Pakistani Dresses">DM for Price</a>
 </div>
 
 <div class="card">
 <h3>Hijabs</h3>
 <p>Matching scarves and accessories.</p>
-<a class="btn primary" href="https://wa.me/918879757173?text=Assalamualaikum,%20I%20want%20price%20details%20for%20Hijabs">DM for Price</a>
+<a class="btn primary" href="https://wa.me/918879757173?text=I want price details for Hijabs">DM for Price</a>
 </div>
 
 </div>
+
 </section>
+
 
 <section class="section" id="about">
 
 <h2 class="title">About Haya Studio</h2>
 
 <div class="about">
-
-<p>
-Haya Studio by Doctors was founded by <b>Dr. Afsha Shaikh</b> and <b>Dr. Sharique Shaikh</b>, a husband-and-wife team bringing together creativity, care, and vision. With one founder equipped with cosmetology expertise and the other with management and MBA insight, Haya Studio was created to build a modern, trusted, and customer-focused modest fashion brand.
-</p>
-
-<p>
-As Kurla East continues to grow rapidly, many women still travel to distant markets to find quality abayas, burkhas, and modest fashion choices. Haya Studio was born with a simple idea — to make elegant modest fashion easily accessible with quality, comfort, and trust for women in every neighborhood.
-</p>
-
-<p>
-Our collections include stylish abayas, graceful burkhas, burkha accessories, latest Pakistani dresses, and evolving women’s fashion essentials. As we grow, we aim to expand into wider categories including accessories, children’s clothing, and family lifestyle essentials.
-</p>
-
-<p>
-What makes Haya Studio special is our personal approach. We carefully select styles that combine elegance, practicality, and current trends instead of offering random mass-market stock. Every customer is treated with attention, respect, and prompt service.
-</p>
-
-<p>
-We are beginning locally for the families and women of Kurla East and nearby areas, with a larger dream of serving customers across Mumbai and beyond.
-</p>
-
-<p>
-Our long-term vision is bold — to grow Haya Studio into one of the most trusted and recognized fashion destinations in Kurla East, with a premium physical studio known for style, quality, and customer satisfaction.
-</p>
-
+Haya Studio by Doctors was founded by Dr. Afsha Shaikh and Dr. Sharique Shaikh, a husband-and-wife team blending creativity, care, and business vision. Our mission is to make elegant modest fashion easily accessible with quality, comfort, and trust for women in every neighborhood. Starting from Kurla East, we aim to become one of Mumbai’s most trusted destinations for modest fashion.
 </div>
 
 </section>
+
 
 <section class="section" id="contact">
 
@@ -267,6 +378,22 @@ Our long-term vision is bold — to grow Haya Studio into one of the most truste
 <div class="footer">
 © 2026 Haya Studio by Doctors
 </div>
+
+<script>
+
+function toggleMenu(){
+document.getElementById("navMenu").classList.toggle("show");
+}
+
+document.querySelectorAll("nav a").forEach(link=>{
+link.addEventListener("click",function(){
+document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
+this.classList.add("active");
+document.getElementById("navMenu").classList.remove("show");
+});
+});
+
+</script>
 
 </body>
 </html>
