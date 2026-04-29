@@ -6,9 +6,14 @@
 <title>Haya Studio by Doctors</title>
 
 <style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
 
 body{
-margin:0;
 font-family:Georgia,serif;
 color:#111;
 line-height:1.6;
@@ -18,7 +23,7 @@ radial-gradient(circle at bottom right, rgba(201,155,43,0.08), transparent 22%),
 linear-gradient(to bottom,#ffffff,#faf8f4);
 }
 
-/* GOLD CORNERS */
+/* Decorative Background */
 body:before{
 content:"";
 position:fixed;
@@ -29,6 +34,7 @@ height:220px;
 background:url('https://www.transparenttextures.com/patterns/arabesque.png');
 opacity:0.08;
 pointer-events:none;
+z-index:-1;
 }
 
 body:after{
@@ -42,6 +48,7 @@ background:url('https://www.transparenttextures.com/patterns/arabesque.png');
 opacity:0.08;
 transform:rotate(180deg);
 pointer-events:none;
+z-index:-1;
 }
 
 /* HEADER */
@@ -49,9 +56,9 @@ header{
 position:sticky;
 top:0;
 background:rgba(255,255,255,0.95);
-backdrop-filter:blur(8px);
+backdrop-filter:blur(10px);
 border-bottom:1px solid #eee;
-padding:10px 18px;
+padding:8px 18px;
 display:flex;
 align-items:center;
 justify-content:space-between;
@@ -65,8 +72,8 @@ gap:12px;
 }
 
 .brand-logo{
-width:64px;
-height:64px;
+width:78px;
+height:78px;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -74,23 +81,33 @@ overflow:hidden;
 }
 
 .brand-logo img{
-height:88px;
+height:115px;
+object-fit:contain;
+margin-top:-2px;
+}
+
+.brand-text{
+display:flex;
+flex-direction:column;
+justify-content:center;
 }
 
 .brand-text h1{
+font-size:20px;
 margin:0;
-font-size:22px;
+line-height:1.1;
 }
 
 .brand-text p{
-margin:2px 0 0;
-font-size:14px;
+font-size:13px;
 color:#777;
+margin-top:2px;
 }
 
+/* DESKTOP MENU */
 nav{
 display:flex;
-gap:18px;
+gap:20px;
 }
 
 nav a{
@@ -99,38 +116,54 @@ color:#111;
 font-size:14px;
 letter-spacing:.08em;
 text-transform:uppercase;
+padding-bottom:4px;
 transition:.3s;
 }
 
 nav a:hover,
 nav a.active{
 color:#c79a2b;
+border-bottom:2px solid #c79a2b;
+}
+
+/* MOBILE MENU BUTTON */
+.menu-toggle{
+display:none;
+background:none;
+border:none;
+font-size:32px;
+cursor:pointer;
 }
 
 /* HERO */
 .hero{
-padding:40px 20px 70px;
+padding:30px 20px 70px;
 text-align:center;
 }
 
+.hero-logo{
+display:flex;
+justify-content:center;
+margin-bottom:-15px;
+}
+
 .hero-logo img{
-height:320px;
-max-width:100%;
+height:340px;
+object-fit:contain;
 }
 
 .hero h2{
-font-size:46px;
-margin:10px 0;
+font-size:48px;
+margin:15px 0;
 }
 
 .hero p{
 max-width:760px;
 margin:auto;
-color:#555;
 font-size:18px;
+color:#555;
 }
 
-/* BUTTONS */
 .btn{
 display:inline-block;
 margin:10px;
@@ -153,7 +186,7 @@ background:#111;
 color:#fff;
 }
 
-/* SECTIONS */
+/* SECTION */
 .section{
 padding:70px 20px;
 max-width:1150px;
@@ -177,7 +210,6 @@ padding:28px;
 border:1px solid #eee;
 border-radius:18px;
 background:rgba(255,255,255,0.92);
-backdrop-filter:blur(5px);
 box-shadow:0 10px 25px rgba(0,0,0,.05);
 text-align:center;
 }
@@ -194,6 +226,10 @@ font-size:18px;
 color:#444;
 }
 
+.about p{
+margin-bottom:18px;
+}
+
 .footer{
 padding:30px;
 text-align:center;
@@ -203,29 +239,44 @@ margin-top:50px;
 }
 
 /* MOBILE */
-.menu-toggle{
-display:none;
+@media(max-width:700px){
+
+header{
+padding:8px 14px;
 }
 
-@media(max-width:700px){
+.brand-logo{
+width:70px;
+height:70px;
+}
+
+.brand-logo img{
+height:105px;
+}
+
+.brand-text h1{
+font-size:18px;
+}
+
+.brand-text p{
+font-size:12px;
+}
 
 .menu-toggle{
 display:block;
-font-size:28px;
-background:none;
-border:none;
 }
 
+/* hide menu default */
 nav{
 display:none;
 position:absolute;
-top:88px;
+top:86px;
 left:0;
 width:100%;
 background:#fff;
 flex-direction:column;
-padding:0;
 border-top:1px solid #eee;
+box-shadow:0 10px 20px rgba(0,0,0,.04);
 }
 
 nav.show{
@@ -233,27 +284,44 @@ display:flex;
 }
 
 nav a{
-padding:15px;
+padding:14px;
 text-align:center;
-border-bottom:1px solid #f3f3f3;
+border-bottom:1px solid #f2f2f2;
+}
+
+.hero{
+padding-top:25px;
+}
+
+.hero-logo img{
+height:250px;
 }
 
 .hero h2{
 font-size:32px;
 }
 
-.hero-logo img{
-height:240px;
+.hero p{
+font-size:16px;
+padding:0 10px;
 }
 
 .btn{
 display:block;
-max-width:280px;
+max-width:300px;
 margin:12px auto;
 }
 
+.title{
+font-size:28px;
 }
 
+.about,
+.contact{
+font-size:17px;
+padding:22px;
+}
+}
 </style>
 </head>
 
@@ -262,7 +330,10 @@ margin:12px auto;
 <header>
 
 <div class="brand">
-<div class="brand-logo"><img src="logo.png"></div>
+<div class="brand-logo">
+<img src="logo.png" alt="logo">
+</div>
+
 <div class="brand-text">
 <h1>Haya Studio</h1>
 <p>by Doctors</p>
@@ -280,10 +351,11 @@ margin:12px auto;
 
 </header>
 
+<!-- HERO -->
 <section class="hero" id="home">
 
 <div class="hero-logo">
-<img src="logo.png">
+<img src="logo.png" alt="logo">
 </div>
 
 <h2>Women Luxury Modest Wear</h2>
@@ -298,6 +370,7 @@ Curated premium abayas, elegant burkhas, graceful Pakistani dresses and timeless
 
 </section>
 
+<!-- PRODUCTS -->
 <section class="section" id="products">
 
 <h2 class="title">Signature Collections</h2>
@@ -329,9 +402,9 @@ Curated premium abayas, elegant burkhas, graceful Pakistani dresses and timeless
 </div>
 
 </div>
-
 </section>
 
+<!-- ABOUT -->
 <section class="section" id="about">
 
 <h2 class="title">About Haya Studio</h2>
@@ -363,12 +436,13 @@ Our long-term vision is bold — to grow Haya Studio into one of the most truste
 </p>
 
 </div>
-
 </section>
 
-
+<!-- CONTACT -->
 <section class="section" id="contact">
+
 <h2 class="title">Contact</h2>
+
 <div class="contact">
 📍 Nehru Nagar, Kurla East, Mumbai<br>
 📞 WhatsApp: 8879757173<br>
@@ -376,6 +450,7 @@ Our long-term vision is bold — to grow Haya Studio into one of the most truste
 🚚 Fast Delivery within Mumbai only<br>
 💳 Prepaid Orders Only
 </div>
+
 </section>
 
 <div class="footer">
@@ -386,6 +461,16 @@ Our long-term vision is bold — to grow Haya Studio into one of the most truste
 function toggleMenu(){
 document.getElementById("navMenu").classList.toggle("show");
 }
+
+/* ACTIVE MENU COLOR ON CLICK */
+const links=document.querySelectorAll("nav a");
+links.forEach(link=>{
+link.addEventListener("click",function(){
+links.forEach(l=>l.classList.remove("active"));
+this.classList.add("active");
+document.getElementById("navMenu").classList.remove("show");
+});
+});
 </script>
 
 </body>
