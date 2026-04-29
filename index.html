@@ -6,19 +6,50 @@
 <title>Haya Studio by Doctors</title>
 
 <style>
+
 body{
 margin:0;
 font-family:Georgia,serif;
-background:#ffffff;
 color:#111;
 line-height:1.6;
+background:
+radial-gradient(circle at top left, rgba(201,155,43,0.08), transparent 22%),
+radial-gradient(circle at bottom right, rgba(201,155,43,0.08), transparent 22%),
+linear-gradient(to bottom,#ffffff,#faf8f4);
+}
+
+/* GOLD CORNERS */
+body:before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:220px;
+height:220px;
+background:url('https://www.transparenttextures.com/patterns/arabesque.png');
+opacity:0.08;
+pointer-events:none;
+}
+
+body:after{
+content:"";
+position:fixed;
+bottom:0;
+right:0;
+width:220px;
+height:220px;
+background:url('https://www.transparenttextures.com/patterns/arabesque.png');
+opacity:0.08;
+transform:rotate(180deg);
+pointer-events:none;
 }
 
 /* HEADER */
 header{
 position:sticky;
 top:0;
-background:#fff;
+background:rgba(255,255,255,0.95);
+backdrop-filter:blur(8px);
 border-bottom:1px solid #eee;
 padding:10px 18px;
 display:flex;
@@ -27,7 +58,6 @@ justify-content:space-between;
 z-index:999;
 }
 
-/* LOGO AREA */
 .brand{
 display:flex;
 align-items:center;
@@ -37,40 +67,30 @@ gap:12px;
 .brand-logo{
 width:64px;
 height:64px;
-overflow:hidden;
 display:flex;
 align-items:center;
 justify-content:center;
-flex-shrink:0;
+overflow:hidden;
 }
 
 .brand-logo img{
 height:88px;
-width:auto;
-object-fit:cover;
-}
-
-.brand-text{
-line-height:1.02;
 }
 
 .brand-text h1{
 margin:0;
-font-size:21px;
-font-weight:700;
+font-size:22px;
 }
 
 .brand-text p{
-margin:4px 0 0 0;
+margin:2px 0 0;
 font-size:14px;
 color:#777;
 }
 
-/* DESKTOP NAV */
 nav{
 display:flex;
-gap:14px;
-align-items:center;
+gap:18px;
 }
 
 nav a{
@@ -79,8 +99,7 @@ color:#111;
 font-size:14px;
 letter-spacing:.08em;
 text-transform:uppercase;
-padding:6px 0;
-transition:0.3s;
+transition:.3s;
 }
 
 nav a:hover,
@@ -88,45 +107,24 @@ nav a.active{
 color:#c79a2b;
 }
 
-/* HAMBURGER */
-.menu-toggle{
-display:none;
-font-size:28px;
-cursor:pointer;
-background:none;
-border:none;
-color:#111;
-}
-
 /* HERO */
 .hero{
-padding:35px 20px 70px;
+padding:40px 20px 70px;
 text-align:center;
-background:linear-gradient(to bottom,#fff,#f8f8f8);
-}
-
-.hero-logo{
-width:260px;
-height:260px;
-overflow:hidden;
-display:flex;
-align-items:center;
-justify-content:center;
-margin:0 auto -18px auto;
 }
 
 .hero-logo img{
-height:340px;
-width:auto;
+height:320px;
+max-width:100%;
 }
 
 .hero h2{
-font-size:42px;
-margin:6px 0 10px;
+font-size:46px;
+margin:10px 0;
 }
 
 .hero p{
-max-width:720px;
+max-width:760px;
 margin:auto;
 color:#555;
 font-size:18px;
@@ -141,7 +139,13 @@ border-radius:30px;
 text-decoration:none;
 border:1px solid #111;
 color:#111;
-font-size:16px;
+font-size:15px;
+transition:.3s;
+background:#fff;
+}
+
+.btn:hover{
+transform:translateY(-2px);
 }
 
 .btn.primary{
@@ -172,24 +176,22 @@ gap:24px;
 padding:28px;
 border:1px solid #eee;
 border-radius:18px;
-background:#fff;
-box-shadow:0 10px 25px rgba(0,0,0,.04);
+background:rgba(255,255,255,0.92);
+backdrop-filter:blur(5px);
+box-shadow:0 10px 25px rgba(0,0,0,.05);
 text-align:center;
 }
 
-.about{
+.about,
+.contact{
 max-width:850px;
 margin:auto;
-text-align:center;
-color:#444;
-font-size:18px;
-}
-
-.contact{
-background:#fafafa;
-border-radius:20px;
+background:rgba(255,255,255,0.92);
 padding:30px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.04);
 font-size:18px;
+color:#444;
 }
 
 .footer{
@@ -201,10 +203,17 @@ margin-top:50px;
 }
 
 /* MOBILE */
+.menu-toggle{
+display:none;
+}
+
 @media(max-width:700px){
 
 .menu-toggle{
 display:block;
+font-size:28px;
+background:none;
+border:none;
 }
 
 nav{
@@ -214,10 +223,9 @@ top:88px;
 left:0;
 width:100%;
 background:#fff;
-border-top:1px solid #eee;
-border-bottom:1px solid #eee;
 flex-direction:column;
 padding:0;
+border-top:1px solid #eee;
 }
 
 nav.show{
@@ -225,28 +233,17 @@ display:flex;
 }
 
 nav a{
-width:100%;
+padding:15px;
 text-align:center;
-padding:15px 0;
-border-bottom:1px solid #f2f2f2;
-}
-
-nav a:last-child{
-border-bottom:none;
-}
-
-nav a.active{
-background:#111;
-color:#fff;
+border-bottom:1px solid #f3f3f3;
 }
 
 .hero h2{
 font-size:32px;
 }
 
-.hero p{
-font-size:17px;
-padding:0 12px;
+.hero-logo img{
+height:240px;
 }
 
 .btn{
@@ -255,15 +252,8 @@ max-width:280px;
 margin:12px auto;
 }
 
-.brand-text h1{
-font-size:19px;
 }
 
-.brand-text p{
-font-size:13px;
-}
-
-}
 </style>
 </head>
 
@@ -272,16 +262,11 @@ font-size:13px;
 <header>
 
 <div class="brand">
-
-<div class="brand-logo">
-<img src="logo.png" alt="Logo">
-</div>
-
+<div class="brand-logo"><img src="logo.png"></div>
 <div class="brand-text">
 <h1>Haya Studio</h1>
 <p>by Doctors</p>
 </div>
-
 </div>
 
 <button class="menu-toggle" onclick="toggleMenu()">☰</button>
@@ -295,7 +280,6 @@ font-size:13px;
 
 </header>
 
-
 <section class="hero" id="home">
 
 <div class="hero-logo">
@@ -308,12 +292,11 @@ font-size:13px;
 Curated premium abayas, elegant burkhas, graceful Pakistani dresses and timeless modest fashion for modern women in Mumbai.
 </p>
 
-<a class="btn" href="https://wa.me/918879757173">Order on WhatsApp</a>
+<a class="btn primary" href="https://wa.me/918879757173">Order on WhatsApp</a>
 <a class="btn" href="https://instagram.com/haya_studio_by_doctors">View Instagram</a>
-<a class="btn" href="https://www.facebook.com/share/1ChpxVi1Nb/">View Facebook</a>
+<a class="btn" href="https://facebook.com/HayaStudioByDoctors">View Facebook</a>
 
 </section>
-
 
 <section class="section" id="products">
 
@@ -324,31 +307,30 @@ Curated premium abayas, elegant burkhas, graceful Pakistani dresses and timeless
 <div class="card">
 <h3>Abayas</h3>
 <p>Elegant daily and premium styles.</p>
-<a class="btn primary" href="https://wa.me/918879757173?text=I want price details for Abayas">DM for Price</a>
+<a class="btn primary" href="https://wa.me/918879757173">DM for Price</a>
 </div>
 
 <div class="card">
 <h3>Burkhas</h3>
 <p>Comfortable and graceful modest wear.</p>
-<a class="btn primary" href="https://wa.me/918879757173?text=I want price details for Burkhas">DM for Price</a>
+<a class="btn primary" href="https://wa.me/918879757173">DM for Price</a>
 </div>
 
 <div class="card">
 <h3>Pakistani Dresses</h3>
 <p>Festive and stylish designer outfits.</p>
-<a class="btn primary" href="https://wa.me/918879757173?text=I want price details for Pakistani Dresses">DM for Price</a>
+<a class="btn primary" href="https://wa.me/918879757173">DM for Price</a>
 </div>
 
 <div class="card">
 <h3>Hijabs</h3>
 <p>Matching scarves and accessories.</p>
-<a class="btn primary" href="https://wa.me/918879757173?text=I want price details for Hijabs">DM for Price</a>
+<a class="btn primary" href="https://wa.me/918879757173">DM for Price</a>
 </div>
 
 </div>
 
 </section>
-
 
 <section class="section" id="about">
 
@@ -384,19 +366,15 @@ Our long-term vision is bold — to grow Haya Studio into one of the most truste
 
 </section>
 
-
 <section class="section" id="contact">
-
 <h2 class="title">Contact</h2>
-
 <div class="contact">
-<p>📍 Nehru Nagar, Kurla East, Mumbai</p>
-<p>📞 WhatsApp: 8879757173</p>
-<p>📧 hayastudiobydoctors@gmail.com</p>
-<p>🚚 Fast Delivery within Mumbai only</p>
-<p>💳 Prepaid Orders Only</p>
+📍 Nehru Nagar, Kurla East, Mumbai<br>
+📞 WhatsApp: 8879757173<br>
+📧 hayastudiobydoctors@gmail.com<br>
+🚚 Fast Delivery within Mumbai only<br>
+💳 Prepaid Orders Only
 </div>
-
 </section>
 
 <div class="footer">
@@ -404,19 +382,9 @@ Our long-term vision is bold — to grow Haya Studio into one of the most truste
 </div>
 
 <script>
-
 function toggleMenu(){
 document.getElementById("navMenu").classList.toggle("show");
 }
-
-document.querySelectorAll("nav a").forEach(link=>{
-link.addEventListener("click",function(){
-document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
-this.classList.add("active");
-document.getElementById("navMenu").classList.remove("show");
-});
-});
-
 </script>
 
 </body>
